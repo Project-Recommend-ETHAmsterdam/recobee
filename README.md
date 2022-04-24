@@ -15,6 +15,8 @@
 
 This is a hackathon submission for EthAmsterdam. Metadvisor is a front-end application use case to recommend places and activities in the metaverse. This illustrates one of a multitude if potential other usecases that are built on Recobee, the underlying recommendation engine. Recobee is a use-case agnostic Recommendation-as-a-Service (RaaS) protocol layer that complements the  [Lens Protocol](http://lens.dev/) 🌿 to enable personalized, social-graph based recommendations.
 
+Link to the SLidedeck: https://github.com/Project-Recommend-ETHAmsterdam/recobee/blob/main/ETHAmsterdam_Recobee%20vFull.pdf
+
 ## ⚙️ Setup
 
 ### Using Local Environment
