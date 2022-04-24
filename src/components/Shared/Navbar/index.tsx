@@ -9,8 +9,6 @@ import { useRouter } from 'next/router'
 import { FC, useContext } from 'react'
 
 import MenuItems from './MenuItems'
-import MoreNavItems from './MoreNavItems'
-import Search from './Search'
 
 const StaffBar = dynamic(() => import('./StaffBar'))
 const NewPostModal = dynamic(() => import('../../Post/NewPost/Modal'))
@@ -53,17 +51,6 @@ const Navbar: FC = () => {
     return (
       <>
         <NavItem url="/" name="Home" current={pathname == '/'} />
-        <NavItem
-          url="/explore"
-          name="Explore"
-          current={pathname == '/explore'}
-        />
-        <NavItem
-          url="/communities"
-          name="Communities"
-          current={pathname == '/communities'}
-        />
-        <MoreNavItems />
       </>
     )
   }
@@ -94,18 +81,8 @@ const Navbar: FC = () => {
                     </div>
                   </a>
                 </Link>
-                <div className="hidden sm:block sm:ml-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="hidden lg:block">
-                      <Search />
-                    </div>
-                    <NavItems />
-                  </div>
-                </div>
               </div>
               <div className="flex gap-8 items-center">
-                {currentUser && <NewPostModal />}
-                {currentUser && <Notification />}
                 <MenuItems />
               </div>
             </div>
@@ -113,9 +90,6 @@ const Navbar: FC = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="flex flex-col p-3 space-y-2">
-              <div className="mb-2">
-                <Search hideDrodown />
-              </div>
               <NavItems />
             </div>
           </Disclosure.Panel>
