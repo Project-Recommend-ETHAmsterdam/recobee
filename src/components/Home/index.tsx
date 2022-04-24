@@ -1,10 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
-import Feed from '@components/Explore/Feed'
 import MinimalFeed from '@components/Explore/MinimalFeed'
 import { GridLayout } from '@components/GridLayout'
-import { GridItemTwelve } from '@components/GridLayout'
+import { GridItemFour, GridItemTwelve } from '@components/GridLayout'
 import Details from '@components/Profile/Details'
-import Sponsors from '@components/Shared/Sponsors'
 import { Card, CardBody } from '@components/UI/Card'
 import AppContext from '@components/utils/AppContext'
 import SEO from '@components/utils/SEO'
@@ -96,59 +94,35 @@ const Home: NextPage = () => {
       )}
       {currentUser && (
         <div
-          className="flex justify-between space-x-8 p-10"
+          className="flex space-x-3 p-10 ml-48 items-center"
           style={{ maxHeight: '600px' }}
         >
           {/* PROFILE CARD */}
           <Card>
             <CardBody className="space-y-6">
               <GridLayout className="pt-6">
-                <GridItemTwelve className="flex justify-center">
+                <GridItemTwelve className="flex flex-col justify-center items-center">
                   <Details profile={profile} />
+                  <HomeFeed />
                 </GridItemTwelve>
               </GridLayout>
             </CardBody>
           </Card>
           {/* END OF PROFILE CARD */}
           {/* YOUR RECENT ACTIVITIES CARD */}
-          <Card>
-            <CardBody className="space-y-6">
-              <GridLayout className="pt-6">
-                <GridItemTwelve className="space-y-5">
-                  <h1>YOUR RECENT ACTIVITIES</h1>
-                  <HomeFeed />
-                </GridItemTwelve>
-              </GridLayout>
-            </CardBody>
-          </Card>
-          {/* END OF*/}
-          {/* YOUR FRIENDS RECENT ACTIVITIES CARD */}
-          <Card>
-            <CardBody className="space-y-6">
-              <GridLayout className="pt-6">
-                <GridItemTwelve className="space-y-5">
-                  <h1>YOUR FRIENDS RECENT ACTIVITIES</h1>
-                  <MinimalFeed feedType="LATEST" />
-                </GridItemTwelve>
-              </GridLayout>
-            </CardBody>
-          </Card>
           {/* END OF */}
+          <div className="p-5">
+            <Card>
+              <CardBody className="space-y-6">
+                <GridItemFour className="space-y-5">
+                  <h1>Recommended Venues</h1>
+                  <MinimalFeed feedType="LATEST" />
+                </GridItemFour>
+              </CardBody>
+            </Card>
+          </div>
         </div>
       )}
-      <div className="p-5">
-        <Card>
-          <CardBody className="space-y-6">
-            <GridItemTwelve className="space-y-5">
-              <h1>Filters</h1>
-              <Feed feedType="LATEST" />
-            </GridItemTwelve>
-          </CardBody>
-        </Card>
-      </div>
-      <GridLayout>
-        <Sponsors></Sponsors>
-      </GridLayout>
     </>
   )
 }

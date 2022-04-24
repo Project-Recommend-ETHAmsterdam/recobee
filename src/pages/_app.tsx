@@ -43,7 +43,7 @@ const connectors = ({ chainId }: ConnectorsConfig) => {
     }),
     new CoinbaseWalletConnector({
       options: {
-        appName: 'Lenster',
+        appName: 'Metadvisor',
         jsonRpcUrl: `${rpcUrl}/${INFURA_ID}`
       }
     })

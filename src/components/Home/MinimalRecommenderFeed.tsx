@@ -1,8 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
-import MinimalRecommendedPost from '@components/Post/MinimalRecommendedPost'
+import MinimalSinglePost from '@components/Post/MinimalSinglePost'
 import PostsShimmer from '@components/Shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { Spinner } from '@components/UI/Spinner'
 import { LensterPost } from '@generated/lenstertypes'
 import { PaginatedResultInfo } from '@generated/types'
 import { CommentFields } from '@gql/CommentFields'
@@ -41,14 +42,14 @@ interface Props {
   feedType?: string
 }
 
-const Feed: FC<Props> = ({ feedType = 'TOP_COMMENTED' }) => {
+const MinimalRecommenderFeed: FC<Props> = ({ feedType = 'TOP_COMMENTED' }) => {
   const [publications, setPublications] = useState<LensterPost[]>([])
   const [pageInfo, setPageInfo] = useState<PaginatedResultInfo>()
   const { data, loading, error, fetchMore } = useQuery(EXPLORE_FEED_QUERY, {
     variables: {
       request: {
         sortCriteria: feedType,
-        limit: 3,
+        limit: 10,
         noRandomize: feedType === 'LATEST'
       }
     },
@@ -71,7 +72,7 @@ const Feed: FC<Props> = ({ feedType = 'TOP_COMMENTED' }) => {
           request: {
             sortCriteria: feedType,
             cursor: pageInfo?.next,
-            limit: 3,
+            limit: 10,
             noRandomize: feedType === 'LATEST'
           }
         }
@@ -99,19 +100,20 @@ const Feed: FC<Props> = ({ feedType = 'TOP_COMMENTED' }) => {
       <ErrorMessage title="Failed to load explore feed" error={error} />
       {!error && !loading && (
         <>
-          <div className="flex space-y-3 gap-3 justify-between">
+          <div className="space-y-3">
             {publications?.map((post: LensterPost, index: number) => (
-              <MinimalRecommendedPost
-                key={`${post?.id}_${index}`}
-                post={post}
-                index={index}
-              />
+              <MinimalSinglePost key={`${post?.id}_${index}`} post={post} />
             ))}
           </div>
+          {pageInfo?.next && (
+            <span ref={observe} className="flex justify-center p-5">
+              <Spinner size="sm" />
+            </span>
+          )}
         </>
       )}
     </>
   )
 }
 
-export default Feed
+export default MinimalRecommenderFeed

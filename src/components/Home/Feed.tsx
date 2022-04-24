@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client'
-import NewPost from '@components/Post/NewPost'
 import SinglePost from '@components/Post/SinglePost'
 import PostsShimmer from '@components/Shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
@@ -84,7 +83,6 @@ const Feed: FC = () => {
 
   return (
     <>
-      {currentUser && <NewPost refetch={refetch} />}
       {loading && <PostsShimmer />}
       {data?.timeline?.items?.length === 0 && (
         <EmptyState
