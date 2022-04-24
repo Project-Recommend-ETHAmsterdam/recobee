@@ -29,7 +29,7 @@ and visit http://localhost:3000
 
 
 ## 🤝 Reference Repos
-- [Lenster Assets](https://github.com/lensterxyz/lenster) - Used as a basis to generate the front-end 
+- [Lenster.xyz](https://github.com/lensterxyz/lenster) - Used as a basis to generate the front-end 
 - [Lenster Assets](https://gitlab.com/lenster/assets) - Static assets hosted in Vercel edge CDN
 - [Design](https://gitlab.com/yo/design) - Design library used in this project
 - [Lenster NFT](https://gitlab.com/lenster/nft) - Used to generate follow NFT
